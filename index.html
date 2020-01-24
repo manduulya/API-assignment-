@@ -9,17 +9,22 @@
 </head>
 <body>
     <section class="form">
-        <h1>Looking for Github user handle?</h1>
-        <label for="searchBox">Enter a username!</label>
-        <input type="text" name="searchBox">
-        <button type="submit">Find!</button>
+        <form action="#" class="JS-Form">
+            <h1>Looking for Github user handle?</h1>
+            <label for="searchBox">Enter a username!</label>
+            <input type="text" name="searchBox" class="JS-Query" required>
+            <button type="submit">Find!</button>
+        </form>
     </section>
-
-    <section class="hidden">
-        <h3 id="Username"></h3>
-        <h3 id="repName"></h3>
-        <h3 id="repUrl"></h3>
+    <p class="js-error-message"></p>
+    <section class="hidden js-result">
+        <h2>Results</h2>
+        <ul class="result-list"></ul>
     </section>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
     <script src="index.js"></script>
 </body>
 </html>
