@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 const apiUrl = 'https://api.github.com/users/';
 
@@ -8,27 +8,23 @@ function formatQueryParams(params){
         return queryItems.join('&');
 }
 
-function displayResult(responseJson, maxResult){
-    console.log(responseJson);
+function displayResult(queryItems){
+    console.log(queryItems);
     $('.result-list').empty();
 
-    for (let i=0; i<response.users.length & i<maxResult; i++){
+    // for (let i=0; i<response.users.length & i<maxResult; i++){
         $('.result-list').append(
             `<li><h2>
-            <a class="js-result-name" href="${responseJson.html_url}" target="_blank">${responseJson.name}</a>
-            by <a class="js-user-name" href="${responseJson.owner.html_url}" target="_blank">${responseJson.owner.login}</a></h2></li>
-            <li><p>Number of watchers: <span class="js-watchers-count">${responseJson.watchers_count}</span></p></li>
-            <li><p>Number of open issues: <span class="js-issues-count">${responseJson.open_issues}</span></p></li>`
+            <a class="js-result-name" href="${queryItems.html_url}" target="_blank">${queryItems.html_url}</a>
+            by <p class="js-user-name" href="${queryItems.html_url}" target="_blank">${queryItems.login}</p></h2></li>`
         )
-    }
+        $('.js-result').removeClass('hidden');
 }
 
-function getUser(query, maxResult = 10){
-    const params = {
-        q: query,
-    };
-    const queryString = formatQueryParams(params);
-    const url = apiUrl + queryString;
+
+function getUser(maxResult = 10){
+    const userName = $('.JS-Query').val();
+    const url = apiUrl + userName;
     
     console.log(url);
 
@@ -40,9 +36,9 @@ function getUser(query, maxResult = 10){
             throw new Error(response.statusText)
         })
         .then(responseJson => displayResult(responseJson, maxResult))
-        .catch(err => {
-            $('.js-error-message').text(`something went wrong: ${error.message}`);
-        });
+        // .catch(err => {
+        //     $('.js-error-message').text(`something went wrong: ${error.message}`);
+        // });
 }
 
 //main function
